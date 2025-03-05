@@ -1,3 +1,3 @@
 <?php
 
-$conn = mysqli_connect("localhost", "root", "", "personalpro_toko_online");
+$conn = mysqli_connect("localhost", "root", "", "rayya_onlineshop");

@@ -73,6 +73,15 @@ include "core/function.php";
         case 'product':
           include "pages/admin/product/index.php";
           break;
+        case 'product_edit':
+          include "pages/admin/product/edit.php";
+          break;
+        case 'variation':
+          include "pages/admin/variation/index.php";
+          break;
+        case 'variation_edit':
+          include "pages/admin/variation/edit.php";
+          break;
         default:
           echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
           break;

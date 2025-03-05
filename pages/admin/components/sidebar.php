@@ -5,8 +5,8 @@
     <a href="index.php?page=product_categories" class="list-group-item list-group-item-action">
         product categories
     </a>
-    <a href="#" class="list-group-item list-group-item-action">
-        The current link item
+    <a href="index.php?page=variation" class="list-group-item list-group-item-action">
+        variation
     </a>
     
 </div>
