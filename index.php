@@ -82,6 +82,12 @@ include "core/function.php";
         case 'variation_edit':
           include "pages/admin/variation/edit.php";
           break;
+        case 'variation_option':
+          include "pages/admin/variation_option/index.php";
+          break;
+        case 'variation_option_edit':
+          include "pages/admin/variation_option/edit.php";
+          break;
         default:
           echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
           break;

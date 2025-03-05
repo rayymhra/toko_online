@@ -79,7 +79,7 @@ $products = mysqli_query($conn, "SELECT * FROM product");
                                 <a href="index.php?page=variation_edit&id=<?= $var["id_variation"]; ?>" class="btn btn-primary">Edit</a>
                                 <form action="" method="post">
                                     <input type="hidden" name="id" value="<?= $var["id_variation"] ?>">
-                                    <button name="delete" class="btn btn-primary">Delete</button>
+                                    <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
                         </tr>

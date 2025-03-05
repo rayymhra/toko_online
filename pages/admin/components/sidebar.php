@@ -8,5 +8,8 @@
     <a href="index.php?page=variation" class="list-group-item list-group-item-action">
         variation
     </a>
+    <a href="index.php?page=variation_option" class="list-group-item list-group-item-action">
+        variation option
+    </a>
     
 </div>

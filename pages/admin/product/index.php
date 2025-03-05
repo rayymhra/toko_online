@@ -118,7 +118,7 @@ if(isset($_POST["delete"])){
                                     <a href="index.php?page=product_edit&id=<?= $product["id_product"]; ?>" class="btn btn-primary">Edit</a>
                                     <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                         <input type="hidden" name="id" value="<?= $product["id_product"] ?>">
-                                        <button name="delete" class="btn btn-primary">Delete</button>
+                                        <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>

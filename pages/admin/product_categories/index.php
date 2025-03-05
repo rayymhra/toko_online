@@ -63,7 +63,7 @@ $categories_name = mysqli_query($conn, "SELECT * FROM categories");
                                 <a href="index.php?page=product_categories_edit&id_categories=<?= $cn["id_categories"];?>" class="btn btn-primary">edit</a>
                                 <form action="" method="post">
                                     <input type="hidden" name="id" value="<?= $cn["id_categories"]?>">
-                                    <button name="delete" class="btn btn-primary">delete</button>
+                                    <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">delete</button>
                                 </form>
                             </td>
                         </tr>
