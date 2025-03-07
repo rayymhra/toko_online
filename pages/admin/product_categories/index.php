@@ -1,4 +1,10 @@
 <?php
+
+if (!check_login()) {
+    echo "<script>alert('Forbidden')</script>";
+    echo "<script>window.location.href='index.php?page=login'</script>";
+}
+
 if (isset($_POST["create"])) {
     $name = $_POST["name"];
 

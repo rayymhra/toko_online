@@ -11,5 +11,8 @@
     <a href="index.php?page=variation_option" class="list-group-item list-group-item-action">
         variation option
     </a>
+    <a href="index.php?page=product_images" class="list-group-item list-group-item-action">
+        product_images
+    </a>
     
 </div>

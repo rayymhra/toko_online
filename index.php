@@ -35,12 +35,12 @@ include "core/function.php";
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="index.php?page=register">Register</a>
             </li>
-            <?php else: ?>
+          <?php else: ?>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="index.php?page=logout">Logout</a>
             </li>
 
-          
+
           <?php endif; ?>
 
           <li class="nav-item">
@@ -88,6 +88,15 @@ include "core/function.php";
         case 'variation_option_edit':
           include "pages/admin/variation_option/edit.php";
           break;
+        case 'product_images':
+          include "pages/admin/product_images/index.php";
+          break;
+        case 'product_images_edit':
+          include "pages/admin/product_images/edit.php";
+          break;
+        // case 'transaction':
+        //   include "pages/admin/transaction/index.php";
+        //   break;
         default:
           echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
           break;

@@ -9,10 +9,11 @@ $variation_options = mysqli_query($conn, "SELECT vo.*, v.variation_name, p.produ
 
 if (isset($_POST["create"])) {
     $id_variation = $_POST["id_variation"];
+    $option_name = $_POST["option_name"];
     $variation_price = $_POST["variation_price"];
     $variation_stock = $_POST["variation_stock"];
 
-    $sql = mysqli_query($conn, "INSERT INTO variation_option(id_variation, variation_price, variation_stock) VALUES('$id_variation', '$variation_price', '$variation_stock')");
+    $sql = mysqli_query($conn, "INSERT INTO variation_option(id_variation, option_name,variation_price, variation_stock) VALUES('$id_variation', '$option_name','$variation_price', '$variation_stock')");
     if ($sql) {
         echo "<script>alert('Variation option added successfully')</script>";
         echo "<script>window.location.href='index.php?page=variation_option'</script>";
@@ -52,6 +53,10 @@ if (isset($_POST["delete"])) {
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label>Option Name</label>
+                        <input type="text" name="option_name" required class="form-control">
+                    </div>
+                    <div class="mb-3">
                         <label>Price:</label>
                         <input type="number" name="variation_price" required class="form-control">
                     </div>
@@ -70,6 +75,7 @@ if (isset($_POST["delete"])) {
                         <th>No</th>
                         <th>Product</th>
                         <th>Variation</th>
+                        <th>Option Name</th>
                         <th>Price</th>
                         <th>Stock</th>
                         <th>Action</th>
@@ -82,6 +88,7 @@ if (isset($_POST["delete"])) {
                             <td><?= $no++; ?></td>
                             <td><?= $vo["product_name"]; ?></td>
                             <td><?= $vo["variation_name"]; ?></td>
+                            <td><?= $vo["option_name"]; ?></td>
                             <td><?= number_format($vo["variation_price"]); ?></td>
                             <td><?= $vo["variation_stock"]; ?></td>
                             <td>

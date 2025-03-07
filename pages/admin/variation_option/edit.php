@@ -7,10 +7,11 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST["update"])) {
+    $option_name = $_POST["option_name"];
     $variation_price = $_POST["variation_price"];
     $variation_stock = $_POST["variation_stock"];
 
-    $sql = mysqli_query($conn, "UPDATE variation_option SET variation_price='$variation_price', variation_stock='$variation_stock' WHERE id_variation_option='$id'");
+    $sql = mysqli_query($conn, "UPDATE variation_option SET option_name='$option_name', variation_price='$variation_price', variation_stock='$variation_stock' WHERE id_variation_option='$id'");
     if ($sql) {
         echo "<script>alert('Variation option updated successfully')</script>";
         echo "<script>window.location.href='index.php?page=variation_option'</script>";
@@ -32,6 +33,10 @@ if (isset($_POST["update"])) {
             </div>
             <div class="card-body">
                 <form action="" method="post">
+                    <div class="mb-3">
+                        <label>Option Name</label>
+                        <input type="text" name="option_name" required class="form-control" value="<?= $variation_option['option_name']; ?>">
+                    </div>
                     <div class="mb-3">
                         <label>Price:</label>
                         <input type="number" name="variation_price" required class="form-control" value="<?= $variation_option['variation_price']; ?>">
