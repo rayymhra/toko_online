@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $categories = mysqli_query($conn, "SELECT * FROM categories");
 $products = mysqli_query($conn, "SELECT * 
@@ -16,16 +16,16 @@ if (isset($_POST["create"])) {
     $size = $_POST["size"];
 
     $sql = mysqli_query($conn, "INSERT INTO product (product_name, id_categories, price, stock, description, weight, product_size) VALUES ('$name', '$category', '$price', '$stock', '$desc', '$weight', '$size')");
-    
+
     if ($sql) {
         echo "<script>alert('Product added successfully')</script>";
         echo "<script>window.location.href='index.php?page=product'</script>";
     }
 }
-if(isset($_POST["delete"])){
+if (isset($_POST["delete"])) {
     $id = $_POST["id"];
     $sql = mysqli_query($conn, "DELETE FROM product WHERE id_product = '$id'");
-    if($sql){
+    if ($sql) {
         echo "<script>alert('Product deleted successfully')</script>";
         echo "<script>window.location.href='index.php?page=product'</script>";
     }
@@ -87,45 +87,64 @@ if(isset($_POST["delete"])){
             </div>
         </div>
         <div class="card p-3 my-3">
-        <table class="table">
-                    <thead>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Weight</th>
+                        <th>Size</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($products as $product) { ?>
                         <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Weight</th>
-                            <th>Size</th>
-                            <th>Description</th>
-                            <th>Actions</th>
+                            <td><?= $no++ ?></td>
+                            <td><?= $product["product_name"] ?></td>
+                            <td><?= $product["categories_name"] ?></td>
+                            <td><?= $product["price"] ?></td>
+                            <td><?= $product["stock"] ?></td>
+                            <td><?= $product["weight"] ?></td>
+                            <td><?= $product["product_size"] ?></td>
+                            <td><?= $product["description"] ?></td>
+                            <td>
+                                <a href="index.php?page=product_edit&id=<?= $product["id_product"]; ?>" class="btn btn-primary">Edit</a>
+                                <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                    <input type="hidden" name="id" value="<?= $product["id_product"] ?>">
+                                    <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                                <a href="index.php?page=product&crud_type=category" class="btn btn-primary">Manage Categories</a>
+                                <a href="index.php?page=product&crud_type=image&id_product=<?= $product['id_product']; ?>" class="btn btn-primary">Manage Images</a>
+                                <a href="index.php?page=product&crud_type=variation&id_product=<?= $product['id_product']; ?>" class="btn btn-primary">Manage Variation</a>
+                                <a href="index.php?page=product&crud_type=variation_option&id" class="btn btn-primary">Manage Variation Option</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $no = 1;
-                        foreach ($products as $product) { ?>
-                            <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= $product["product_name"] ?></td>
-                                <td><?= $product["categories_name"] ?></td>
-                                <td><?= $product["price"] ?></td>
-                                <td><?= $product["stock"] ?></td>
-                                <td><?= $product["weight"] ?></td>
-                                <td><?= $product["product_size"] ?></td>
-                                <td><?= $product["description"] ?></td>
-                                <td>
-                                    <a href="index.php?page=product_edit&id=<?= $product["id_product"]; ?>" class="btn btn-primary">Edit</a>
-                                    <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
-                                        <input type="hidden" name="id" value="<?= $product["id_product"] ?>">
-                                        <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php }; ?>
-                    </tbody>
-                </table>
+                    <?php }; ?>
+                </tbody>
+            </table>
         </div>
 
+        <?php
+        if (isset($_GET['crud_type'])) {
+            $crud_type = $_GET['crud_type'];
+
+            if ($crud_type == "category") {
+                include "pages/admin/product_categories/index.php";
+            } elseif ($crud_type == "image") {
+                include "pages/admin/product_images/index.php";
+            } elseif ($crud_type == "variation") {
+                include "pages/admin/variation/index.php";
+            } elseif ($crud_type == "variation_option") {
+                include "pages/admin/variation_option/index.php";
+            }
+        }
+        ?>
     </div>
 </div>

@@ -21,9 +21,9 @@ if (isset($_POST["update"])) {
 ?>
 
 <div class="row my-5">
-    <div class="col-3">
-        <?php include "pages/admin/components/sidebar.php"; ?>
-    </div>
+    <!-- <div class="col-3">
+        <?php //include "pages/admin/components/sidebar.php"; ?>
+    </div> -->
     <div class="col-9">
         <div class="card">
             <div class="card-header">

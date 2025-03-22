@@ -22,7 +22,7 @@ include "core/function.php";
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand" href="#">Toko Online</a>
+      <a class="navbar-brand" href="index.php">Toko Online</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,8 +39,6 @@ include "core/function.php";
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="index.php?page=logout">Logout</a>
             </li>
-
-
           <?php endif; ?>
 
           <li class="nav-item">
@@ -93,6 +91,21 @@ include "core/function.php";
           break;
         case 'product_images_edit':
           include "pages/admin/product_images/edit.php";
+          break;
+        case 'admin':
+          include "pages/admin/index.php";
+          break;
+        case 'add_to_cart':
+          include "pages/user/cart/add_to_cart.php";
+          break;
+        case 'cart':
+          include "pages/user/cart/index.php";
+          break;
+        case 'remove_from_cart':
+          include "pages/user/cart/delete.php";
+          break;
+        case 'checkout':
+          include "pages/user/cart/checkout.php";
           break;
         // case 'transaction':
         //   include "pages/admin/transaction/index.php";

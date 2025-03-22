@@ -5,13 +5,13 @@ if (!check_login()) {
     echo "<script>window.location.href='index.php?page=login'</script>";
 }
 
-if (isset($_POST["create"])) {
+if (isset($_POST["create_categories"])) {
     $name = $_POST["name"];
 
     $sql = mysqli_query($conn, "INSERT INTO categories(categories_name) VALUES('$name')");
     if ($sql) {
         echo "<script>alert('categories inserted successfully')</script>";
-        echo "<script>window.location.href='index.php?page=product_categories'</script>";
+        echo "<script>window.location.href='index.php?page=product&crud_type=category'</script>";
     }
 }elseif(isset($_POST["delete"])){
     $id = $_POST["id"];
@@ -19,7 +19,7 @@ if (isset($_POST["create"])) {
     $sql = mysqli_query($conn, "DELETE FROM categories WHERE id_categories = '$id'");
     if($sql){
         echo "<script>alert('categories deleted successfully')</script>";
-        echo "<script>window.location.href='index.php?page=product_categories'</script>";
+        echo "<script>window.location.href='index.php?page=product&crud_type=category'</script>";
     }
 }
 
@@ -30,7 +30,7 @@ $categories_name = mysqli_query($conn, "SELECT * FROM categories");
 
 <div class="row my-5">
     <div class="col-3">
-        <?php include "pages/admin/components/sidebar.php"; ?>
+    <?php include "pages/admin/components/sidebar.php"; ?>
     </div>
     <div class="col-9">
         <div class="card">
@@ -44,7 +44,7 @@ $categories_name = mysqli_query($conn, "SELECT * FROM categories");
                         <input type="text" class="form-control" name="name">
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <button class="btn btn-primary" name="create" type="submit">Add</button>
+                        <button class="btn btn-primary" name="create_categories" type="submit">Add</button>
                     </div>
 
                 </form>
