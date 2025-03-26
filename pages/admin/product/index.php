@@ -120,10 +120,9 @@ if (isset($_POST["delete"])) {
                                     <input type="hidden" name="id" value="<?= $product["id_product"] ?>">
                                     <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
-                                <a href="index.php?page=product&crud_type=category" class="btn btn-primary">Manage Categories</a>
                                 <a href="index.php?page=product&crud_type=image&id_product=<?= $product['id_product']; ?>" class="btn btn-primary">Manage Images</a>
                                 <a href="index.php?page=product&crud_type=variation&id_product=<?= $product['id_product']; ?>" class="btn btn-primary">Manage Variation</a>
-                                <a href="index.php?page=product&crud_type=variation_option&id" class="btn btn-primary">Manage Variation Option</a>
+                                
                             </td>
                         </tr>
                     <?php }; ?>
@@ -135,14 +134,26 @@ if (isset($_POST["delete"])) {
         if (isset($_GET['crud_type'])) {
             $crud_type = $_GET['crud_type'];
 
-            if ($crud_type == "category") {
-                include "pages/admin/product_categories/index.php";
-            } elseif ($crud_type == "image") {
-                include "pages/admin/product_images/index.php";
-            } elseif ($crud_type == "variation") {
-                include "pages/admin/variation/index.php";
-            } elseif ($crud_type == "variation_option") {
-                include "pages/admin/variation_option/index.php";
+            // if ($crud_type == "category") {
+            //     include "pages/admin/product_categories/index.php";
+            // } elseif ($crud_type == "image") {
+            //     include "pages/admin/product_images/index.php";
+            // } elseif ($crud_type == "variation") {
+            //     include "pages/admin/variation/index.php";
+            // } elseif ($crud_type == "variation_option") {
+            //     include "pages/admin/variation_option/index.php";
+            // }
+
+            switch ($crud_type) {
+                case "image":
+                    include "pages/admin/product_images/index.php";
+                    break;
+                case "variation":
+                    include "pages/admin/variation/index.php";
+                    break;
+                default:
+                    echo "error in url";
+                    break;
             }
         }
         ?>
