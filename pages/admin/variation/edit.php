@@ -6,13 +6,18 @@ if (isset($_GET['id'])) {
     $variation = mysqli_fetch_assoc($query);
 }
 
+if (isset($_GET['id_product'])) {
+    $id_product = $_GET['id_product'];
+}
+
+
 if (isset($_POST["update"])) {
     $variation_name = $_POST["variation_name"];
 
     $sql = mysqli_query($conn, "UPDATE variation SET variation_name='$variation_name' WHERE id_variation='$id'");
     if ($sql) {
         echo "<script>alert('Variation updated successfully')</script>";
-        echo "<script>window.location.href='index.php?page=variation'</script>";
+        echo "<script>window.location.href='index.php?page=product&crud_type=variation&id_product=" . $id_product . "'</script>";
     }
 }
 

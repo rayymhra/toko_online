@@ -1,9 +1,6 @@
 <?php
-
-$variations = mysqli_query($conn, "SELECT * 
-                                                    FROM variation 
-                                                    JOIN product 
-                                                    ON variation.id_product = product.id_product");
+$id_product = $_GET["id_product"];
+$variations = mysqli_query($conn, "SELECT * FROM variation WHERE id_product = $id_product");
 
 if (isset($_POST["create_variation"])) {
     $id_product = $_POST["id_product"];
@@ -12,14 +9,15 @@ if (isset($_POST["create_variation"])) {
     $sql = mysqli_query($conn, "INSERT INTO variation(id_product, variation_name) VALUES('$id_product', '$variation_name')");
     if ($sql) {
         echo "<script>alert('Variation added successfully')</script>";
-        echo "<script>window.location.href='index.php?page=product'</script>";
+        echo "<script>window.location.href='index.php?page=product&crud_type=variation&id_product=" . $id_product . "'</script>";
+
     }
 }
-if (isset($_POST["delete"])) {
+if (isset($_POST["delete_variation"])) {
     $id = $_POST["id"];
     mysqli_query($conn, "DELETE FROM variation WHERE id_variation = '$id'");
     echo "<script>alert('Variation deleted successfully')</script>";
-    echo "<script>window.location.href='index.php?page=product'</script>";
+    echo "<script>window.location.href='index.php?page=product&crud_type=variation&id_product=" . $id_product . "'</script>";
 }
 
 $products = mysqli_query($conn, "SELECT * FROM product");
@@ -35,7 +33,7 @@ $products = mysqli_query($conn, "SELECT * FROM product");
     <div class="col-9">
         <div class="card">
             <div class="card-header">
-                <h5>Product</h5>
+                <h5>Variation</h5>
             </div>
             <div class="card-body">
                 <form action="" method="post">
@@ -56,7 +54,6 @@ $products = mysqli_query($conn, "SELECT * FROM product");
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Product</th>
                         <th>Variation Name</th>
                         <th>Actions</th>
                     </tr>
@@ -67,19 +64,29 @@ $products = mysqli_query($conn, "SELECT * FROM product");
                     foreach ($variations as $var) { ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $var["product_name"] ?></td>
                             <td><?= $var["variation_name"] ?></td>
                             <td>
-                                <a href="index.php?page=variation_edit&id=<?= $var["id_variation"]; ?>" class="btn btn-primary">Edit</a>
+                                <a href="index.php?page=variation_edit&id=<?= $var["id_variation"]; ?>&id_product=<?= $id_product ?>"
+                                    class="btn btn-primary">Edit</a>
                                 <form action="" method="post">
                                     <input type="hidden" name="id" value="<?= $var["id_variation"] ?>">
-                                    <button name="delete" class="btn btn-primary" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button name="delete_variation" class="btn btn-primary"
+                                        onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
+                                <a href="index.php?page=product&crud_type=variation&id_product=<?= $id_product ?>&show_option=<?= $var["id_variation"] ?>"
+                                    class="btn btn-primary">Add Option</a>
                             </td>
                         </tr>
-                    <?php }; ?>
+                    <?php }
+                    ; ?>
                 </tbody>
             </table>
+            <?php
+            if (isset($_GET["show_option"])) {
+                $id_variation = $_GET["show_option"];
+                include "pages/admin/variation_option/index.php";
+            }
+            ?>
         </div>
 
     </div>
