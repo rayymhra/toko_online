@@ -5,7 +5,7 @@ if (isset($_POST["id_product"]) && isset($_POST["qty"])) {
     
     add_to_cart($id_product, $qty);
 
-    // Redirect ke halaman cart dengan format index.php?page=cart
-    header("Location: index.php?page=cart");
+    echo "<script>alert('Product Added to Cart')</script>";
+        echo "<script>window.location.href='index.php'</script>";
     exit;
 }

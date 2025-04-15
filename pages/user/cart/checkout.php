@@ -1,11 +1,12 @@
 <?php
+$id_user = $_SESSION["id_user"];
 
 if (!isset($_SESSION["cart"]) || empty($_SESSION["cart"])) {
     echo "<script>alert('Your cart is empty!'); window.location.href='index.php?page=cart';</script>";
     exit;
 }
 
-$id_user = $_SESSION["id_user"];
+
 $total_price = 0;
 
 // Insert transaksi baru
@@ -31,4 +32,4 @@ mysqli_query($conn, "UPDATE transaction SET total_price = '$total_price' WHERE i
 // Kosongkan cart
 unset($_SESSION["cart"]);
 
-echo "<script>alert('Checkout successful!'); window.location.href='index.php?page=home';</script>";
+echo "<script>alert('Checkout successful!'); window.location.href='index.php';</script>";

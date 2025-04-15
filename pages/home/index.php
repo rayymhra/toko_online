@@ -8,7 +8,7 @@ $result = mysqli_query($conn, "SELECT p.*,
 
 ?>
 
-<div class="container my-5">
+<div class="container my-5 products">
     <h2 class="text-center mb-4">All Products</h2>
     <div class="row">
         <?php while ($row = mysqli_fetch_assoc($result)) { 
@@ -17,7 +17,7 @@ $result = mysqli_query($conn, "SELECT p.*,
             <div class="col-md-3">
                 <div class="card mb-4">
                     <img src="<?= $image_path; ?>" class="card-img-top" alt="Product Image" 
-                         onerror="this.onerror=null;this.src='assets/img/produk/default.jpg';">
+                         onerror="this.onerror=null;this.src='assets/img/produk/default.png';">
                     <div class="card-body">
                         <h5 class="card-title"><?= $row['product_name']; ?></h5>
                         <p class="card-text">Rp <?= number_format($row['price']); ?></p>

@@ -9,7 +9,8 @@ if (isset($_POST["login"])) {
     if ($check_email->num_rows > 0) {
         $user = mysqli_fetch_assoc($check_email);
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user'] = $user; // set session
+            $_SESSION['user'] = $user;
+            $_SESSION['id_user'] = $user['id_user'];
             if ($user["level"] == "user") {
                 echo "<script>alert('login success')</script>";
                 echo "<script>window.location.href='index.php'</script>";
